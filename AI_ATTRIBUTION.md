@@ -1,5 +1,58 @@
 # AI Assistance Attribution
 
+## Assignment 8 - Buildroot Character Driver Integration
+
+OpenAI Codex/ChatGPT was used as a collaborative programming assistant for the
+Assignment 8 Buildroot integration on October 17, 2026.
+
+### Full chat history
+
+https://chatgpt.com/s/cx_6ad400f57728819180d4f6450bf29492
+
+### AI-assisted files
+
+- `base_external/package/aesd-assignments/aesd-assignments.mk`
+- `base_external/rootfs_overlay/etc/init.d/S98aesdchar`
+- `AI_ATTRIBUTION.md`
+
+The assignment-selection change was course starter code merged from
+`buildroot-assignments-base/assignment8`.
+
+### Assistance provided
+
+AI assistance enabled the assignments package's kernel-module integration for
+`aesd-char-driver`, forced clean target builds to prevent stale host binaries
+from entering the AArch64 image, and added a boot script that loads the module,
+resolves its dynamic major number, creates `/dev/aesdchar`, and unloads it
+cleanly. AI assistance used a local Buildroot source override for pre-commit
+validation and then pinned the final package to native commit
+`4878e89fb6b6d28a355857bb74b45a24dc2a1f86`.
+
+### Student review and verification
+
+The student completed an interactive review covering newline-delimited pending
+writes, circular-buffer eviction and allocation ownership, read offsets,
+kernel and user-space locking, error paths, test-coverage limits, and device
+permission implications. The integrated Buildroot package produced AArch64
+versions of both `aesdsocket` and `aesdchar.ko`. The generated image booted in
+QEMU, loaded the driver before starting the socket server, successfully
+unloaded/reloaded the driver, and passed the course Assignment 8
+`drivertest.sh` and `sockettest.sh` validations. A subsequent build fetched the
+pinned native commit directly from GitHub, rebuilt the target applications and
+module, regenerated the image, and passed both QEMU validations again. GitHub
+Actions verification remained pending when this entry was committed.
+
+### External code and sources
+
+No external implementation code and no other student's assignment were used.
+Requirements, starter changes, and tests came from the supplied Assignment 8
+instructions, the course `aesd-assignments` and
+`buildroot-assignments-base` repositories, and the course-provided tests.
+
+### Other student assignments
+
+No other student's assignment was used, supplied to the AI, or referenced.
+
 ## Assignment 7 Part 2 - Buildroot Kernel Modules
 
 - Full chat history: https://chatgpt.com/s/cx_6ac93e63e5f081919b89f40a3ba75ff9

@@ -5,15 +5,18 @@
 #
 ##############################################################
 
-AESD_ASSIGNMENTS_VERSION = e7bbf2be4179bd1a7edfdcc5bac00d9613d8a688
+AESD_ASSIGNMENTS_VERSION = 4878e89fb6b6d28a355857bb74b45a24dc2a1f86
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
 AESD_ASSIGNMENTS_SITE = git@github.com:cu-ecen-aeld/assignment-3-sawa9885.git
 AESD_ASSIGNMENTS_SITE_METHOD = git
 AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
+AESD_ASSIGNMENTS_MODULE_SUBDIRS = aesd-char-driver
 
 define AESD_ASSIGNMENTS_BUILD_CMDS
+	$(MAKE) -C $(@D)/finder-app clean
+	$(MAKE) -C $(@D)/server clean
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/server all
 endef
@@ -29,4 +32,5 @@ define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
 		$(TARGET_DIR)/etc/init.d/S99aesdsocket
 endef
 
+$(eval $(kernel-module))
 $(eval $(generic-package))
