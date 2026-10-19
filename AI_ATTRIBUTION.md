@@ -40,7 +40,12 @@ unloaded/reloaded the driver, and passed the course Assignment 8
 `drivertest.sh` and `sockettest.sh` validations. A subsequent build fetched the
 pinned native commit directly from GitHub, rebuilt the target applications and
 module, regenerated the image, and passed both QEMU validations again. GitHub
-Actions verification remained pending when this entry was committed.
+Actions full-test run `39081095603` passed on attempt 7. Earlier attempts were
+interrupted by missing repository secret configuration, runner termination,
+job timeout while the host was suspended, and host reboot; a reboot-corrupted
+OpenSSL intermediate directory was cleaned before the successful retry. The
+successful run built the pinned native source, booted QEMU, loaded and
+unloaded `aesdchar`, and passed both `drivertest.sh` and `sockettest.sh`.
 
 ### External code and sources
 
